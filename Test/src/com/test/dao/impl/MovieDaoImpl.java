@@ -55,7 +55,7 @@ public class MovieDaoImpl implements MovieDao {
 			session = sessionFactory.openSession();
 		}
 		Query q = session.createQuery(
-				"SELECT m.id, m.title, round(avg(r.rating),2) as rating, count(r.user_id) as vote FROM Movie m join Rating r\r\n"
+				"SELECT m.id, m.title, round(avg(r.rating),2) as rating, case when count(r.user_id)>100 then round(count(r.user_id),-2) else count(r.user_id) end as vote FROM Movie m join Rating r\r\n"
 						+ "on m.id = r.movie_id\r\n" + "group by m.id \r\n" + "having count(r.user_id) > 20 \r\n"
 						+ "order by rating desc");
 
