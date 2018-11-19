@@ -58,8 +58,8 @@ public class MovieDaoImpl implements MovieDao {
 				"SELECT m.id, m.title, round(avg(r.rating),2) as rating, count(r.user_id) as vote FROM Movie m join Rating r\r\n"
 						+ "on m.id = r.movie_id\r\n" + "group by m.id \r\n" + "having count(r.user_id) > 20 \r\n"
 						+ "order by rating desc");
-		
 
+		q.setFirstResult(0).setMaxResults(100);
 		List<Movie> movieList = (List<Movie>) q.list();
 		return movieList;
 	}
