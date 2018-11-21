@@ -33,6 +33,7 @@ public class MovieDaoImpl implements MovieDao {
 
 	Session session;
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Movie> getAllMovies() {
 
@@ -58,6 +59,28 @@ public class MovieDaoImpl implements MovieDao {
 				"SELECT m.id, m.title, round(avg(r.rating),2) as rating, case when count(r.user_id)>100 then round(count(r.user_id),-2) else count(r.user_id) end as vote FROM Movie m join Rating r\r\n"
 						+ "on m.id = r.movie_id\r\n" + "group by m.id \r\n" + "having count(r.user_id) > 20 \r\n"
 						+ "order by rating desc");
+
+		q.setFirstResult(0).setMaxResults(100);
+		List<Movie> movieList = (List<Movie>) q.list();
+		return movieList;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Movie> getTopWithAge(int age) {
+		try {
+			session = sessionFactory.getCurrentSession();
+		} catch (HibernateException e) {
+			session = sessionFactory.openSession();
+		}
+		Query q = session.createQuery(
+				"SELECT m.id, m.title, round(avg(r.rating),2) as rating, case when count(r.user_id)>100 then round(count(r.user_id),-2) else count(r.user_id) end as votes\r\n" + 
+				"from Movie m join Rating r on m.id = r.movie_id\r\n" + 
+				"join User u on r.user_id = u.id\r\n" + 
+				"join Age a on a.id = u.age_id\r\n" + 
+				"where a.id =" + age +  "\r\n" + 
+				"group by m.id\r\n" + 
+				"order by rating desc");
 
 		q.setFirstResult(0).setMaxResults(100);
 		List<Movie> movieList = (List<Movie>) q.list();

@@ -34,5 +34,9 @@ public class MovieService {
 	public List<Movie> getTop100() {		
 		return movieDao.getTop100();		
 	}
+	
+	public List<Movie> getTopWithAge(int age) {
+		return movieDao.getTopWithAge(age);
+	}
 
 }

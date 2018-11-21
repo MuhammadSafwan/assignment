@@ -20,4 +20,6 @@ public interface MovieDao {
 	
 	List<Movie> getTop100();
 
+	List<Movie> getTopWithAge(int age);
+
 }

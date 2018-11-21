@@ -4,15 +4,19 @@
 package com.test.model;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  * @author Safwan
  *
  */
+@Entity
+@Table(name="users")
 public class User {
 	
 	@Id
@@ -23,13 +27,11 @@ public class User {
 	@Column(name = "gender")
 	private String gender;
 	
-	@ManyToOne
-	@JoinColumn(name = "age_id")
-	private Age age;
+	@Column(name = "age_id")
+	private int age_id;
 	
-	@ManyToOne
-	@JoinColumn(name = "occupation_id")
-	private Occupation occupation;
+	@Column(name = "occupation_id")
+	private int occupation_id;
 	
 	@Column(name = "zipcode")
 	private String zipcode;
@@ -50,20 +52,20 @@ public class User {
 		this.gender = gender;
 	}
 
-	public Age getAge() {
-		return age;
+	public int getAge_id() {
+		return age_id;
 	}
 
-	public void setAge(Age age) {
-		this.age = age;
+	public void setAge_id(int age_id) {
+		this.age_id = age_id;
 	}
 
-	public Occupation getOccupation() {
-		return occupation;
+	public int getOccupation_id() {
+		return occupation_id;
 	}
 
-	public void setOccupation(Occupation occupation) {
-		this.occupation = occupation;
+	public void setOccupation_id(int occupation_id) {
+		this.occupation_id = occupation_id;
 	}
 
 	public String getZipcode() {
@@ -73,6 +75,7 @@ public class User {
 	public void setZipcode(String zipcode) {
 		this.zipcode = zipcode;
 	}
+
 	
 	
 	

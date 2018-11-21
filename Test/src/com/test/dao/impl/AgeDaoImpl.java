@@ -31,6 +31,7 @@ public class AgeDaoImpl implements AgeDao{
 	@Autowired
 	private SessionFactory sessionFactory;
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Age> getAllAges() {
 		Session session;
@@ -40,7 +41,7 @@ public class AgeDaoImpl implements AgeDao{
 		    session = sessionFactory.openSession();
 		}
 		Query q = session.createQuery("FROM Age");
-		List<Age> ageList = q.list();
+		List<Age> ageList = (List<Age>) q.list();
 		return ageList;
 	}
 
