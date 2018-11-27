@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.test.model.Age;
 import com.test.model.Movie;
 import com.test.service.MovieService;
 
@@ -24,7 +25,7 @@ import com.test.service.MovieService;
 @Controller
 public class TopAgeController {
 	
-	protected static Logger logger = Logger.getLogger("TopHundredController");
+	protected static Logger logger = Logger.getLogger("TopAgeController");
 	 
 	private MovieService movieService;
 	
@@ -34,19 +35,30 @@ public class TopAgeController {
 	}
 	
 	@RequestMapping(value = "/age", method = RequestMethod.GET)
-	public String showTopMovies(Map<String, Object> model, HttpServletRequest request) {		
+	public String showTopMoviesWithAge(Map<String, Object> model, HttpServletRequest request) {		
  
-		logger.info("entering showTopMovies");
+		logger.info("entering showTopMoviesWithAge");
 		
 		String movieParam = request.getParameter("age");
-		System.out.println(movieParam);
+		Age searchedAge = new Age();
  
 		List<Movie> movie = movieService.getTopWithAge(Integer.parseInt(movieParam));
 		model.put("movie", movie);		
-		//System.out.println(movie.get(0));
+		model.put("searchedAge", searchedAge);
  
-	    	// This will resolve to /WEB-INF/jsp/greetings.jsp
 	    	return "topWithAge";
 	}
+	
+	/*@RequestMapping(method = RequestMethod.POST)
+	public String onSubmit(Model model, HttpSession httpSession,
+			@ModelAttribute("anyRequestObject") Object anyRequestObject, BindingResult errors,
+			@ModelAttribute("searchMovie") Age searchedAge) {
+
+		if (errors.hasErrors()) {
+			// return error view
+		}
+
+		return "redirect:/age.html?age=" + searchedAge.getId();
+	}*/
 
 }

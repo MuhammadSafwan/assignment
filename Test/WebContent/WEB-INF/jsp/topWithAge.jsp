@@ -3,19 +3,24 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <html>
 <head>
-<title>Done</title>
+<title>Movie List with Age</title>
 </head>
 
 <body>
 	<table>
 	
-	<%-- <tr>
-		<td>Enter Team Name or ID</td>
-		<form:form method="post" commandName="searchMovie">
-			<td><form:input id="teamName" path="teamName"/></td>
-			<td><button type="submit">Search</button></td>
-	</form:form>
-	</tr> --%>
+<%-- <form:form id="searchMovie" name="searchMovie" method="post"
+		modelAttribute="searchedAge">
+		<tr>
+			<td><form:select id="age" path="id" cssStyle="width:165px">
+					<form:option value="0" label=" Please Select " />
+					<c:forEach var="age" items="${age}" varStatus="loop">
+						<form:option value="${age.id}">${age.title}</form:option>
+					</c:forEach>
+				</form:select></td>
+				<td><button type="submit">Search</button></td>
+		</tr>
+</form:form> --%>
 	
 		<tr>
 			<th>ID</th>

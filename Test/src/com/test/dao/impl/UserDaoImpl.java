@@ -31,6 +31,7 @@ public class UserDaoImpl implements UserDao{
 	@Autowired
 	private SessionFactory sessionFactory;
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<User> getAllUsers() {
 		Session session;

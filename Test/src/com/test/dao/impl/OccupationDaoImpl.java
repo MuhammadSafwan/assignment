@@ -31,6 +31,7 @@ public class OccupationDaoImpl implements OccupationDao{
 	@Autowired
 	private SessionFactory sessionFactory;
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Occupation> getAllOccupations() {
 		Session session;

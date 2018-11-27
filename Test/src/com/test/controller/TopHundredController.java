@@ -55,9 +55,7 @@ public class TopHundredController {
 		model.put("age", age);
 		model.put("searchMovie", searchMovie);
 		model.put("searchedAge", searchedAge);
-		// System.out.println(movie.get(0));
 
-		// This will resolve to /WEB-INF/jsp/greetings.jsp
 		return "top";
 	}
 

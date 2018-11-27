@@ -31,6 +31,7 @@ public class RatingDaoImpl implements RatingDao{
 	@Autowired
 	private SessionFactory sessionFactory;
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Rating> getAllRatings() {
 		Session session;
